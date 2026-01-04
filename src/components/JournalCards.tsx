@@ -10,7 +10,7 @@ const JournalCards = () => {
         hover:shadow-[4px_4px_8px_rgba(62,39,35,0.1)]
         transition-all duration-300 ease-out
         transform hover:-translate-y-1 hover:rotate-1
-        cursor-pointer
+        cursor-pointer rounded-2xl
       "
     >
       <div className="flex justify-between items-center">

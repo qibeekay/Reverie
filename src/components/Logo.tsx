@@ -3,7 +3,7 @@ export function ReverieLogo() {
     <div className="flex flex-col items-center ">
       {/* Main logo text */}
       <div className="text-center">
-        <h1 className="text-7xl tracking-widest relative font-hand">
+        <h1 className="text-5xl tracking-widest relative font-hand">
           <span className="relative inline-block">R</span>
           everie
         </h1>
@@ -18,7 +18,7 @@ export function ReverieLogo() {
         </div>
 
         {/* Slogan */}
-        <p className="tracking-[0.4em] uppercase opacity-80 font-crimson">
+        <p className="tracking-[0.4em] text-xs uppercase opacity-80 font-crimson">
           Every mood has a page
         </p>
       </div>
