@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Patrick+Hand&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-paper-cream: #faf7f0;
+  --color-ink-brown: #3e2723;
+  --color-coffee-light: #8d6e63;
+  --color-line-color: #e0d6cc;
+  --color-margin-line: #ef9a9a;
+
+  --font-hand: "Patrick Hand", cursive;
+  --font-crimson: "Crimson Text", serif;
+
+  /* breakpoints */
+  --breakpoint-xs: 350px;
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 976px;
+  --breakpoint-xl: 1440px;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-paper-cream);
+    color: var(--color-ink-brown);
+    font-family: var(--font-crimson);
+    -webkit-font-smoothing: antialiased;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d7ccc8;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a1887f;
+}
