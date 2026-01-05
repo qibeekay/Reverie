@@ -1,21 +1,27 @@
-import { PlusIcon } from "lucide-react";
+import { PlusIcon, UserIcon } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEditorStore } from "../store/editorStore";
+import { useAuth } from "../store/authStore";
+import { supabase } from "../lib/supabase";
+import AuthModal from "../components/AuthModal";
 import Header from "./Header";
 import Body from "./Body";
 import EditorPage from "./editor/EditorPage";
-import { motion, AnimatePresence } from "framer-motion";
-import { useEditorStore } from "../store/editorStore";
 
 const Homepage = () => {
   const { isEditorOpen, openEditor } = useEditorStore();
+  const { user, openAuth } = useAuth();
 
   return (
     <div className="max-w-6xl mx-auto px-4 min-h-screen">
-      {/* Add Button - Shows when editor is closed */}
+      {/* MODAL */}
+      <AuthModal />
+
       <AnimatePresence>
         {!isEditorOpen && (
           <motion.button
-            onClick={openEditor}
-            className="flex items-center justify-center w-20 aspect-square rounded-full fixed right-4 xl:right-40 bottom-10 bg-[#3E2723] text-white cursor-pointer z-10"
+            onClick={() => (user ? openEditor() : openAuth(true))}
+            className="flex items-center justify-center w-20 aspect-square rounded-full fixed right-4 xl:right-40 bottom-10 bg-[#3E2723] text-white cursor-pointer z-40"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             initial={{ opacity: 0, scale: 0.8 }}
@@ -30,7 +36,6 @@ const Homepage = () => {
 
       <Header />
 
-      {/* Show Body or EditorPage based on state */}
       <AnimatePresence mode="wait">
         {!isEditorOpen ? (
           <motion.div
@@ -38,7 +43,6 @@ const Homepage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
           >
             <Body />
           </motion.div>
@@ -48,7 +52,6 @@ const Homepage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
           >
             <EditorPage />
           </motion.div>

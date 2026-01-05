@@ -5,9 +5,11 @@ import { MoodSelector } from "./MoodIcon";
 import { EntryEditor } from "./EntryEditor";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEditorStore } from "../../store/editorStore";
+import { toast } from "sonner";
 
 const EditorPage = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const { saveJournal, editingId } = useEditorStore();
 
   // Get state and actions from store
   const {
@@ -16,18 +18,16 @@ const EditorPage = () => {
     closeEditor,
     setPhotoUrl,
     setIsImageTaped,
+    setPhoto,
     clearAll,
   } = useEditorStore();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPhotoUrl(reader.result as string);
-        setIsImageTaped(true);
-      };
-      reader.readAsDataURL(file);
+      // Simply pass the file to the store
+      setPhoto(file);
+      setIsImageTaped(true);
     }
   };
 
@@ -44,11 +44,13 @@ const EditorPage = () => {
     clearAll(); // Clear editor state when closing
   };
 
-  const handleSave = () => {
-    // Add your save logic here
-    console.log("Saving entry...");
-    closeEditor();
-    clearAll();
+  const handleSave = async () => {
+    try {
+      await saveJournal();
+      toast.success(editingId ? "Entry updated!" : "Entry sealed and saved!");
+    } catch (e) {
+      toast.error("Failed to save entry");
+    }
   };
 
   return (
@@ -120,11 +122,11 @@ const EditorPage = () => {
                     className="absolute top-4 right-4 z-10"
                   >
                     <div className="relative">
-                      <div className="bg-white p-3 pb-6 shadow-md border border-[#E0D6CC] max-w-[200px]">
+                      <div className="bg-white p-3 pb-6 shadow-md border border-[#E0D6CC] max-w-50">
                         <img
                           src={photoUrl}
                           alt="Memory"
-                          className="w-full h-auto max-h-[150px] object-cover filter sepia-[0.2]"
+                          className="w-full h-auto max-h-37.5 object-cover filter sepia-[0.2]"
                         />
                         <motion.button
                           onClick={handleClearPhoto}
