@@ -14,6 +14,8 @@ interface EditorState {
   editingId: string | null;
   photoFile: File | null;
   isLoading: boolean;
+  searchQuery: string;
+  viewMode: "list" | "calendar";
 
   // Actions
   openEditor: () => void;
@@ -30,6 +32,8 @@ interface EditorState {
   setPhoto: (file: File | null) => void;
   fetchEntries: () => Promise<void>;
   deleteEntry: (id: string) => Promise<void>;
+  setSearchQuery: (q: string) => void;
+  setViewMode: (mode: "list" | "calendar") => void;
 }
 
 export const useEditorStore = create<EditorState>((set, get) => ({
@@ -43,6 +47,8 @@ export const useEditorStore = create<EditorState>((set, get) => ({
   tags: [],
   mood: null,
   content: "",
+  searchQuery: "",
+  viewMode: "list",
 
   openEditor: () => set({ isEditorOpen: true }),
   closeEditor: () => set({ isEditorOpen: false }),
@@ -52,6 +58,8 @@ export const useEditorStore = create<EditorState>((set, get) => ({
   setTags: (tags) => set({ tags }),
   setMood: (mood) => set({ mood }),
   setContent: (content) => set({ content }),
+  setSearchQuery: (searchQuery) => set({ searchQuery }),
+  setViewMode: (viewMode) => set({ viewMode }),
   setPhoto: (file) => {
     if (!file) {
       set({ photoFile: null, photoUrl: undefined });

@@ -25,7 +25,7 @@ const JournalCards = ({ entry }: { entry: any }) => {
   return (
     <div
       onClick={() => setEntryToEdit(entry)}
-      className="group relative bg-[#FAF7F0] p-6 border border-line-color shadow-xs hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 rounded-2xl cursor-pointer"
+      className="group relative bg-[#FAF7F0] p-6 border border-line-color shadow-xs hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 rounded-2xl cursor-pointer mt-6"
     >
       <div className="flex justify-between items-center">
         <div>
@@ -58,7 +58,7 @@ const JournalCards = ({ entry }: { entry: any }) => {
             e.stopPropagation();
             deleteEntry(entry.id);
           }}
-          className="p-2 text-[#8D6E63] hover:text-red-800 hover:bg-red-50 rounded-full"
+          className="p-2 text-[#8D6E63] hover:text-red-800 hover:bg-red-50 rounded-full cursor-pointer"
         >
           <Trash2Icon size={16} />
         </button>

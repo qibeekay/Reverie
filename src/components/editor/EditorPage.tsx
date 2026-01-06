@@ -10,6 +10,7 @@ import { toast } from "sonner";
 const EditorPage = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { saveJournal, editingId } = useEditorStore();
+  const [isSaving, setIsSaving] = useState(false);
 
   // Get state and actions from store
   const {
@@ -45,11 +46,16 @@ const EditorPage = () => {
   };
 
   const handleSave = async () => {
+    if (isSaving) return; // Prevent multiple clicks
+
     try {
+      setIsSaving(true); // 3. Start loading
       await saveJournal();
       toast.success(editingId ? "Entry updated!" : "Entry sealed and saved!");
     } catch (e) {
       toast.error("Failed to save entry");
+    } finally {
+      setIsSaving(false); // 4. Stop loading
     }
   };
 
@@ -84,7 +90,7 @@ const EditorPage = () => {
           whileTap={{ scale: 0.95 }}
         >
           <Save size={20} />
-          <p className="text-lg">Seal and Save</p>
+          <p className="text-lg">{isSaving ? "Sealing..." : "Seal and Save"}</p>
         </motion.button>
       </motion.div>
 

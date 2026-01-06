@@ -8,6 +8,7 @@ export interface JournalEntry {
   tags: string[];
   photo_url?: string;
   user_id?: string;
+  created_at?: string;
 }
 
 export const journalApi = {
