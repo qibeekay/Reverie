@@ -3,22 +3,22 @@ export function ReverieLogo() {
     <div className="flex flex-col items-center ">
       {/* Main logo text */}
       <div className="text-center">
-        <h1 className="text-5xl tracking-widest relative font-hand">
+        <h1 className="text-3xl sm:text-5xl tracking-widest relative font-hand">
           <span className="relative inline-block">R</span>
           everie
         </h1>
 
         {/* Decorative underline */}
         <div className="flex items-center justify-center gap-3">
-          <div className="h-px w-10 bg-ink-brown/20" />
+          <div className="h-px w-4 sm:w-10 bg-ink-brown/20" />
           <div className="w-2 h-2 rounded-full bg-coffee-light/50" />
-          <div className="h-px w-16 bg-ink-brown/30" />
+          <div className="h-px w-10 sm:w-16 bg-ink-brown/30" />
           <div className="w-2 h-2 rounded-full bg-coffee-light/50" />
-          <div className="h-px w-10 bg-ink-brown/20" />
+          <div className="h-px w-4 sm:w-10 bg-ink-brown/20" />
         </div>
 
         {/* Slogan */}
-        <p className="tracking-[0.4em] text-xs uppercase opacity-80 font-crimson">
+        <p className="text-[10px] sm:tracking-[0.4em] sm:text-xs uppercase opacity-80 font-crimson">
           Every mood has a page
         </p>
       </div>
@@ -26,7 +26,7 @@ export function ReverieLogo() {
       {/* Decorative bottom flourish */}
       <div className="flex items-center gap-3">
         <div className="w-2 h-2 rounded-full bg-coffee-light/40" />
-        <div className="h-px w-8 bg-ink-brown/20" />
+        <div className="h-px w-2 sm:w-8 bg-ink-brown/20" />
         <svg
           width="20"
           height="20"
@@ -40,7 +40,7 @@ export function ReverieLogo() {
           <circle cx="2" cy="8" r="1.5" fill="currentColor" />
           <circle cx="14" cy="8" r="1.5" fill="currentColor" />
         </svg>
-        <div className="h-px w-8 bg-ink-brown/20" />
+        <div className="h-px w-2 sm:w-8 bg-ink-brown/20" />
         <div className="w-2 h-2 rounded-full bg-coffee-light/40" />
       </div>
     </div>

@@ -26,7 +26,7 @@ const Header = () => {
             onClick={handleExport}
           >
             <Download className="w-4 h-4" />
-            <p>Export Journal</p>
+            <p className="hidden md:block">Export Journal</p>
           </button>
         )}
 
